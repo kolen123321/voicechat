@@ -1,0 +1,27 @@
+version: '1.0'
+
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - ./storages/redis/data:/data
+  backend:
+    build: VoiceChatSite/
+    command: daphne -b 0.0.0.0 -p 8001 VoiceChatSite.asgi:application
+    ports:
+      - "8001:8001"
+    depends_on:
+      - redis
+  nginx:
+    build: nginx/
+    depends_on:
+      - backend
+    ports:
+      - "8002:80"
+
+networks:
+  app:
+    driver: bridge

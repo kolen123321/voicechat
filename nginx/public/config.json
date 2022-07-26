@@ -1,0 +1,13 @@
+{
+    "stun": {
+        "urls": ["stun:135.148.121.178:3472"],
+        "credential": "test",
+        "username": "test"
+    },
+    "turn": {
+        "urls": ["turn:135.148.121.178:3472"],
+        "credential": "test",
+        "username": "test"
+    },
+    "server": "current"
+}
